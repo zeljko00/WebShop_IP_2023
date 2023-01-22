@@ -1,0 +1,14 @@
+.register-form{
+    width: 650px;
+    margin-top: 25px;
+    border: solid 1px white;
+    border-radius: 20px;
+    padding: 25px;
+    padding-right: 0;
+}
+.container{
+    background: linear-gradient(#5680E9,#ffffff);
+    min-height: 72vh;
+    display: flex;
+    justify-content:center;
+}

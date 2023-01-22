@@ -1,0 +1,26 @@
+header{
+    display: flex;
+    flex-direction: row;
+    padding: 25px;
+    background-color:#5680E9;
+}
+#logo{
+    max-width: 20vh;
+    max-height: 20vh;
+}
+#title{
+    width: 80%;
+    font-size: 12vh;
+    word-spacing: 2vw;
+    font-family: 'Roboto', sans-serif;
+    color: #c1c8e4;
+}
+#logo-cont{
+    width: 20%;
+}
+.center-cont{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
