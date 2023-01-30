@@ -26,3 +26,15 @@
   .login-form-button {
     width: 100%;
   }
+  #a-right{
+    float: right;
+  }
+  #spinner {
+    position: absolute;
+    left: calc( 50vw - 25px );
+    top: 48.5vh;
+    max-height: 50px;
+    max-width: 50px;
+    z-index: 1000;
+  }
+ 

@@ -6,4 +6,7 @@ export class User {
   lastname: string = '';
   city: string = '';
   email: string = '';
+  avatar: string = '';
+  token: string = '';
+  status: string | null = null;
 }

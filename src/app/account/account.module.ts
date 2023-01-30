@@ -6,9 +6,11 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { HeaderComponent } from './header/header.component';
 import { AntdModule } from '../antd/antd.module';
+import { MaterialModule } from '../material/material.module';
+import { ActivationDialogComponent } from './activation-dialog/activation-dialog.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegistrationComponent, HeaderComponent],
-  imports: [CommonModule, AccountRoutingModule, AntdModule],
+  declarations: [LoginComponent, RegistrationComponent, HeaderComponent, ActivationDialogComponent],
+  imports: [CommonModule, AccountRoutingModule, AntdModule, MaterialModule],
 })
 export class AccountModule {}

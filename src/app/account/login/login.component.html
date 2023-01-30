@@ -1,5 +1,14 @@
 <account-header></account-header>
 <div id="container">
+  <mat-progress-spinner
+    id="spinner"
+    *ngIf="spinner"
+    class="example-margin"
+    [color]="color"
+    [mode]="mode"
+    [value]="value"
+  >
+  </mat-progress-spinner>
   <form
     nz-form
     [formGroup]="validateForm"
@@ -44,6 +53,7 @@
     >
       Uloguj se
     </button>
-    <a>Registruj se!</a>
+    <a routerLink="/shop">Nastavi kao gost!</a>
+    <a routerLink="/register" id="a-right">Registruj se!</a>
   </form>
 </div>

@@ -1,5 +1,14 @@
 <account-header></account-header>
 <div class="container">
+  <mat-progress-spinner
+    id="spinner"
+    *ngIf="spinner"
+    class="example-margin"
+    [color]="color"
+    [mode]="mode"
+    [value]="value"
+  >
+  </mat-progress-spinner>
   <form
     nz-form
     class="register-form"
@@ -99,9 +108,36 @@
         <input nz-input id="city" formControlName="city" />
       </nz-form-control>
     </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="userAvatar">
+        <span>Sličica profila</span>
+      </nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <button (click)="prev()" id="prev-btn" class="carousel-btn">
+          <span class="icons" nz-icon nzType="left" nzTheme="outline"></span>
+        </button>
+        <nz-carousel
+          nzEffect="flip"
+          id="userAvatar"
+          nzEnableSwipe="true"
+          #carouselRef
+          nzDots="false"
+          (nzAfterChange)="changed($event)"
+        >
+          <div nz-carousel-content *ngFor="let avatar of avatars">
+            <img [src]="avatar.path" [alt]="avatar.value" class="avatar" />
+          </div>
+        </nz-carousel>
+        <button (click)="next()" id="next-btn" class="carousel-btn">
+          <span class="icons" nz-icon nzType="right" nzTheme="outline"></span>
+        </button>
+      </nz-form-control>
+    </nz-form-item>
     <nz-form-item nz-row class="register-area">
       <nz-form-control [nzSpan]="14" [nzOffset]="6">
-        <button nz-button nzType="primary">Registruj se</button>
+        <button nz-button nzType="primary" (click)="submitting()">
+          Registruj se
+        </button>
       </nz-form-control>
     </nz-form-item>
   </form>

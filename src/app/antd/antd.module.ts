@@ -5,6 +5,12 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 @NgModule({
   declarations: [],
@@ -16,6 +22,12 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
     NzInputModule,
     NzButtonModule,
     NzCheckboxModule,
+    NzSelectModule,
+    NzCarouselModule,
+    NzAvatarModule,
+    NzIconModule,
+    NzMessageModule,
+    NzSpinModule,
   ],
   exports: [
     ReactiveFormsModule,
@@ -24,6 +36,12 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
     NzButtonModule,
     NzCheckboxModule,
     NzFormModule,
+    NzSelectModule,
+    NzCarouselModule,
+    NzAvatarModule,
+    NzIconModule,
+    NzMessageModule,
+    NzSpinModule,
   ],
 })
 export class AntdModule {}
