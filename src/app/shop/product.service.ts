@@ -7,15 +7,23 @@ import { environment } from '../config/environments';
 })
 export class ProductService {
   constructor(private client: HttpClient) {}
-  getProducts(): any {
-    return this.client.get(`${environment.baseURL}${environment.productsPath}`);
+  getProducts(index: number, size: number): any {
+    return this.client.get(
+      `${environment.baseURL}${environment.productsPath}` +
+        '?pageNo=' +
+        index +
+        '&pageSize=' +
+        size
+    );
   }
   getProductsFiltered(
     p1: string,
     p2: string,
     sold: string,
     category: string,
-    title: string
+    title: string,
+    index: number,
+    size: number
   ): any {
     return this.client.get(
       `${environment.baseURL}${environment.productsPath}` +
@@ -28,7 +36,11 @@ export class ProductService {
         '/' +
         title +
         '/' +
-        category
+        category +
+        '?pageNo=' +
+        index +
+        '&pageSize=' +
+        size
     );
   }
 }

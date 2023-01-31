@@ -15,6 +15,7 @@ import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivationDialogComponent } from '../activation-dialog/activation-dialog.component';
 import { ActivationRequest } from 'src/app/model/ActivationRequest';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -30,7 +31,8 @@ export class LoginComponent implements OnInit {
     private fb: UntypedFormBuilder,
     private service: UserService,
     private message: NzMessageService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -100,7 +102,7 @@ export class LoginComponent implements OnInit {
                       'success',
                       'Uspješno ste se prijavili na svoj nalog!'
                     );
-                    //preusmjeravanje na shop
+                    this.router.navigate(['/shop']);
                   } else {
                     this.message.create('info', 'Morate aktivirati Vaš nalog!');
                     this.openDialog();

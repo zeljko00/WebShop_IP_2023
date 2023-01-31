@@ -14,6 +14,7 @@ import { ProductInfoComponent } from './product-info/product-info.component';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatPaginatorIntlSrb } from './CustomPaginator';
 import { FormsModule } from '@angular/forms';
+import { AntdModule } from '../antd/antd.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,13 @@ import { FormsModule } from '@angular/forms';
     SaleComponent,
     ProductInfoComponent,
   ],
-  imports: [CommonModule, ShopRoutingModule, MaterialModule, FormsModule],
+  imports: [
+    CommonModule,
+    ShopRoutingModule,
+    MaterialModule,
+    FormsModule,
+    AntdModule,
+  ],
   providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlSrb }],
 })
 export class ShopModule {}
