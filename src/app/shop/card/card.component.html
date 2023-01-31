@@ -1,0 +1,24 @@
+<a href="https://material.angular.io">
+  <mat-card [class]="cardClass">
+    <mat-card-header>
+      <mat-card-subtitle
+        ><span>{{ product.category }}</span></mat-card-subtitle
+      >
+      <mat-card-title>{{ product.title }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <img
+        mat-card-image
+        src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+        alt="Proizvod nema sliku!"
+        class="product-img"
+      />
+    </mat-card-content>
+    <mat-card-footer>
+      <p class="price-p">
+        <span>{{ product.price + " " }}BAM</span
+        ><span *ngIf="product.sold" class="sold-note">PRODATO</span>
+      </p>
+    </mat-card-footer>
+  </mat-card>
+</a>

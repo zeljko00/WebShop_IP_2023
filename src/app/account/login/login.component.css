@@ -1,6 +1,5 @@
 #container{
-    background: linear-gradient(#5680E9,#ffffff);
-    min-height: 72vh;
+    min-height: 70vh;
     display: flex;
     justify-content:center;
 }
@@ -37,4 +36,3 @@
     max-width: 50px;
     z-index: 1000;
   }
- 

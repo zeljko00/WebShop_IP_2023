@@ -2,18 +2,18 @@ header{
     display: flex;
     flex-direction: row;
     padding: 25px;
-    background-color:#5680E9;
+    background-color:transparent;
 }
 #logo{
-    max-width: 20vh;
-    max-height: 20vh;
+    max-width: 23vmin;
+    max-height: 23vmin;
 }
 #title{
     width: 80%;
-    font-size: 12vh;
+    font-size: 6vw;
     word-spacing: 2vw;
     font-family: 'Roboto', sans-serif;
-    color: #c1c8e4;
+    color: #5680E9;
 }
 #logo-cont{
     width: 20%;

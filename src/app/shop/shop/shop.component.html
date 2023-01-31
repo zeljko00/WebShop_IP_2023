@@ -1,0 +1,89 @@
+<div id="shop">
+  <mat-progress-spinner
+    id="spinner"
+    *ngIf="spinner"
+    class="example-margin"
+    [color]="color"
+    [mode]="mode"
+    [value]="value"
+  >
+  </mat-progress-spinner>
+  <div class="controls">
+    <mat-form-field appearance="fill">
+      <mat-label>Pretraga po naslovu</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="searchValue"
+        (change)="change()"
+      />
+      <button
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        *ngIf="searchValue"
+        (click)="clearSearch()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Kategorija</mat-label>
+      <mat-select
+        disableRipple
+        [(ngModel)]="category"
+        (selectionChange)="change()"
+      >
+        <mat-option value="-">Sve</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Nov/Korišten</mat-label>
+      <mat-select disableRipple [(ngModel)]="used" (selectionChange)="change()">
+        <mat-option value="-">Oboje</mat-option>
+        <mat-option value="true">Nov</mat-option>
+        <mat-option value="false">Korišten</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Min cijena</mat-label>
+      <input
+        type="number"
+        min="0"
+        matInput
+        [(ngModel)]="min"
+        (change)="change()"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Max cijena</mat-label>
+      <input
+        type="number"
+        min="0"
+        matInput
+        [(ngModel)]="max"
+        (change)="change()"
+      />
+    </mat-form-field>
+    <!-- <br />
+    <mat-label id="slider-lbl">Raspon cijene</mat-label>
+    <mat-slider min="0" max="100000" discrete="true">
+      <input value="0" matSliderStartThumb />
+      <input value="1000" matSliderEndThumb />
+    </mat-slider> -->
+  </div>
+
+  <div class="container">
+    <app-card *ngFor="let product of products" [product]="product"></app-card>
+  </div>
+  <mat-paginator
+    (page)="handlePageEvent($event)"
+    [length]="length"
+    [pageSize]="pageSize"
+    [showFirstLastButtons]="showFirstLastButtons"
+    [pageSizeOptions]="pageSizeOptions"
+    [pageIndex]="pageIndex"
+    aria-label="Select page"
+  >
+  </mat-paginator>
+</div>

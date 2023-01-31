@@ -1,144 +1,150 @@
-<account-header></account-header>
-<div class="container">
-  <mat-progress-spinner
-    id="spinner"
-    *ngIf="spinner"
-    class="example-margin"
-    [color]="color"
-    [mode]="mode"
-    [value]="value"
-  >
-  </mat-progress-spinner>
-  <form
-    nz-form
-    class="register-form"
-    [formGroup]="validateForm"
-    (ngSubmit)="submitForm()"
-  >
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="firstname" nzRequired>
-        <span>Ime</span>
-      </nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Unesite vaše ime!">
-        <input nz-input id="firstname" formControlName="firstname" />
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="lastname" nzRequired>
-        <span>Prezime</span>
-      </nz-form-label>
-      <nz-form-control
-        [nzSm]="14"
-        [nzXs]="24"
-        nzErrorTip="Unesite vaše prezime!"
-      >
-        <input nz-input id="lastname" formControlName="lastname" />
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="username" nzRequired>
-        <span>Korisničko ime</span>
-      </nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="invalidUsername">
-        <input nz-input id="username" formControlName="username" />
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired
-        >Lozinka</nz-form-label
-      >
-      <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="invalidPassword">
-        <input
-          nz-input
-          type="password"
-          id="password"
-          formControlName="password"
-          (ngModelChange)="updateConfirmValidator()"
-        />
-      </nz-form-control>
-    </nz-form-item>
-
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired
-        >Potvrda lozinke</nz-form-label
-      >
-      <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
-        <input
-          nz-input
-          type="password"
-          formControlName="checkPassword"
-          id="checkPassword"
-        />
-        <ng-template #errorTpl let-control>
-          <ng-container *ngIf="control.hasError('required')"
-            >Potvrdite vašu lozinku!</ng-container
-          >
-          <ng-container *ngIf="control.hasError('confirm')">
-            Lozinke se ne poklapaju!
-          </ng-container>
-        </ng-template>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-label
-        [nzSm]="6"
-        [nzXs]="24"
-        nzRequired
-        nzFor="email"
-        nzTooltipTitle="Koristi se za aktivaciju naloga!"
-        >E-mail</nz-form-label
-      >
-      <nz-form-control
-        [nzSm]="14"
-        [nzXs]="24"
-        nzErrorTip="Unesite vašu email adresu!"
-      >
-        <input nz-input formControlName="email" id="email" />
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="city" nzRequired>
-        <span>Grad</span>
-      </nz-form-label>
-      <nz-form-control
-        [nzSm]="14"
-        [nzXs]="24"
-        nzErrorTip="Unesite grad u kojem živite!"
-      >
-        <input nz-input id="city" formControlName="city" />
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="userAvatar">
-        <span>Sličica profila</span>
-      </nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24">
-        <button (click)="prev()" id="prev-btn" class="carousel-btn">
-          <span class="icons" nz-icon nzType="left" nzTheme="outline"></span>
-        </button>
-        <nz-carousel
-          nzEffect="flip"
-          id="userAvatar"
-          nzEnableSwipe="true"
-          #carouselRef
-          nzDots="false"
-          (nzAfterChange)="changed($event)"
+<div id="register-page">
+  <div class="container">
+    <mat-progress-spinner
+      id="spinner"
+      *ngIf="spinner"
+      class="example-margin"
+      [color]="color"
+      [mode]="mode"
+      [value]="value"
+    >
+    </mat-progress-spinner>
+    <form
+      nz-form
+      class="register-form"
+      [formGroup]="validateForm"
+      (ngSubmit)="submitForm()"
+    >
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="firstname" nzRequired>
+          <span>Ime</span>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Unesite vaše ime!">
+          <input nz-input id="firstname" formControlName="firstname" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="lastname" nzRequired>
+          <span>Prezime</span>
+        </nz-form-label>
+        <nz-form-control
+          [nzSm]="14"
+          [nzXs]="24"
+          nzErrorTip="Unesite vaše prezime!"
         >
-          <div nz-carousel-content *ngFor="let avatar of avatars">
-            <img [src]="avatar.path" [alt]="avatar.value" class="avatar" />
-          </div>
-        </nz-carousel>
-        <button (click)="next()" id="next-btn" class="carousel-btn">
-          <span class="icons" nz-icon nzType="right" nzTheme="outline"></span>
-        </button>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item nz-row class="register-area">
-      <nz-form-control [nzSpan]="14" [nzOffset]="6">
-        <button nz-button nzType="primary" (click)="submitting()">
-          Registruj se
-        </button>
-      </nz-form-control>
-    </nz-form-item>
-  </form>
+          <input nz-input id="lastname" formControlName="lastname" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="username" nzRequired>
+          <span>Korisničko ime</span>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="invalidUsername">
+          <input nz-input id="username" formControlName="username" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired
+          >Lozinka</nz-form-label
+        >
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="invalidPassword">
+          <input
+            nz-input
+            type="password"
+            id="password"
+            formControlName="password"
+            (ngModelChange)="updateConfirmValidator()"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired
+          >Potvrda lozinke</nz-form-label
+        >
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
+          <input
+            nz-input
+            type="password"
+            formControlName="checkPassword"
+            id="checkPassword"
+          />
+          <ng-template #errorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')"
+              >Potvrdite vašu lozinku!</ng-container
+            >
+            <ng-container *ngIf="control.hasError('confirm')">
+              Lozinke se ne poklapaju!
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label
+          [nzSm]="6"
+          [nzXs]="24"
+          nzRequired
+          nzFor="email"
+          nzTooltipTitle="Koristi se za aktivaciju naloga!"
+          >E-mail</nz-form-label
+        >
+        <nz-form-control
+          [nzSm]="14"
+          [nzXs]="24"
+          nzErrorTip="Unesite vašu email adresu!"
+        >
+          <input nz-input formControlName="email" id="email" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="city" nzRequired>
+          <span>Grad</span>
+        </nz-form-label>
+        <nz-form-control
+          [nzSm]="14"
+          [nzXs]="24"
+          nzErrorTip="Unesite grad u kojem živite!"
+        >
+          <input nz-input id="city" formControlName="city" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="userAvatar">
+          <span>Sličica profila</span>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" class="centered">
+          <button (click)="prev()" id="prev-btn" class="carousel-btn">
+            <span class="icons" nz-icon nzType="left" nzTheme="outline"></span>
+          </button>
+          <nz-carousel
+            nzEffect="flip"
+            id="userAvatar"
+            nzEnableSwipe="true"
+            #carouselRef
+            nzDots="false"
+            (nzAfterChange)="changed($event)"
+          >
+            <div nz-carousel-content *ngFor="let avatar of avatars">
+              <img [src]="avatar.path" [alt]="avatar.value" class="avatar" />
+            </div>
+          </nz-carousel>
+          <button (click)="next()" id="next-btn" class="carousel-btn">
+            <span class="icons" nz-icon nzType="right" nzTheme="outline"></span>
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item nz-row class="register-area">
+        <nz-form-control [nzSpan]="14" [nzOffset]="6" class="custom-control">
+          <button
+            nz-button
+            nzType="primary"
+            (click)="submitting()"
+            class="centered-btn"
+          >
+            Registruj se
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
 </div>

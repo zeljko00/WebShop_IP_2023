@@ -1,16 +1,40 @@
 .register-form{
-    width: 650px;
+    width: 600px;
     margin-top: 15px;
     border: solid 1px white;
     border-radius: 20px;
     padding: 25px;
-    padding-right: 0;
+}
+@media only screen and (min-width: 680px) {
+    .register-form{
+        width: 600px;
+    }
+
+}
+@media only screen and (max-width: 680px) {
+    .register-form{
+        width: 320px;
+        margin-bottom: 40px;
+    }
+    input{
+        width: 270px;
+    }
+    .centered{
+        margin:auto;
+    }
+    .centered-btn{
+        margin:auto;
+        display: block;
+    }
+    .custom-control{
+        margin-left: 0px;
+    }
 }
 .container{
-    background: linear-gradient(#5680E9,#ffffff);
-    max-height: 70vh;
     display: flex;
     justify-content:center;
+    background: transparent;
+    padding-bottom: 30px;
 }
 .avatar{
     max-width: 120px;
