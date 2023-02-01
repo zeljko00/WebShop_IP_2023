@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/model/Product';
 import { User } from 'src/app/model/User';
 import { environment } from '../../config/environments';
@@ -14,6 +15,7 @@ export class CardComponent implements OnInit {
   public my: boolean = false;
   public state: string = 'POLOVNO';
   public image: string = '';
+  constructor(private router: Router) {}
   ngOnInit() {
     if (sessionStorage.getItem('user')) {
       const user: User = JSON.parse(sessionStorage.getItem('user') || '');
@@ -26,5 +28,8 @@ export class CardComponent implements OnInit {
         '/' +
         this.product.images.at(0)?.id;
     this.cardClass = this.my ? 'my-card' : this.product.sold ? 'sold-card' : '';
+  }
+  infoClick() {
+    this.router.navigate(['shop', 'product'], { state: this.product });
   }
 }

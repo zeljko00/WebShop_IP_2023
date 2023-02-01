@@ -1,1 +1,67 @@
-<p>product-info works!</p>
+<div class="container">
+  <div class="info">
+    <div class="flex-container">
+      <p class="attribute" id="price-attribute">Cijena:</p>
+      <p class="bolded-text attribute-value" id="price">
+        {{ product.price + " " }}BAM
+      </p>
+    </div>
+    <div class="flex-container">
+      <p class="attribute">Naziv:</p>
+      <p class="bolded-text attribute-value">{{ product.title }}</p>
+    </div>
+    <div class="flex-container">
+      <p class="attribute">Kategorija:</p>
+      <p class="bolded-text attribute-value">{{ product.category }}</p>
+    </div>
+    <div class="flex-container">
+      <p class="attribute">Stanje:</p>
+      <p class="bolded-text attribute-value">{{ state }}</p>
+    </div>
+    <div class="flex-container">
+      <p class="attribute">Lokacija:</p>
+      <p class="bolded-text attribute-value">{{ product.location }}</p>
+    </div>
+    <div class="flex-container">
+      <p class="attribute">Prodavac:</p>
+      <p class="attribute-value">{{ product.seller.info }}</p>
+    </div>
+    <div class="flex-container">
+      <p class="attribute">Kontakt:</p>
+      <p class="attribute-value">{{ product.contact }}</p>
+    </div>
+    <div class="flex-container">
+      <p class="attribute">Detaljan opis:</p>
+      <p class="attribute-value">
+        {{ product.description }}
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
+      </p>
+    </div>
+    <div class="flex-container">
+      <button
+        mat-fab
+        color="primary"
+        aria-label="Example icon button with a delete icon"
+        (click)="home()"
+      >
+        <mat-icon>home</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="gallery">
+    <nz-carousel nzAutoPlay [nzEffect]="'fade'" nzEnableSwipe>
+      <div nz-carousel-content *ngIf="noImage">
+        <img src="../../../assets/imgs/no-photo.png" class="no-img" />
+      </div>
+      <div nz-carousel-content *ngFor="let img of images">
+        <img [src]="img" class="product-img" />
+      </div>
+    </nz-carousel>
+  </div>
+</div>
