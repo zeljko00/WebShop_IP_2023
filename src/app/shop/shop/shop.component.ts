@@ -15,6 +15,8 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 export class ShopComponent implements OnInit {
   @ViewChild('paginator') paginator!: MatPaginator;
 
+  categories: Array<string> = [];
+
   public spinner: boolean = false;
   color: ThemePalette = 'accent';
   mode: ProgressSpinnerMode = 'indeterminate';
@@ -53,6 +55,20 @@ export class ShopComponent implements OnInit {
     const temp: Array<Product> = [];
     this.spinner = true;
     this.service
+      .getCategories()
+      .pipe(
+        catchError((error: any) =>
+          this.handleError(error, 'Neuspješno dobavljanje podataka')
+        )
+      )
+      .subscribe((data: any) => {
+        const temp: Array<string> = [];
+        data.forEach((c: any) => {
+          temp.push(c.name);
+        });
+        this.categories = temp;
+      });
+    this.service
       .getProducts(this.pageIndex, this.pageSize)
       .pipe(
         catchError((error: any) =>
@@ -73,7 +89,7 @@ export class ShopComponent implements OnInit {
           'fter ' + this.length + ' ' + this.pageSize + ' ' + this.pageIndex
         );
       });
-    this.products = temp;
+    // this.products = temp;
   }
   handleError(error: HttpErrorResponse, msg: string) {
     console.log('erro handling');

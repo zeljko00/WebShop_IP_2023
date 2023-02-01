@@ -3,4 +3,6 @@ export const environment = {
   usersPath: '/users',
   avatarsPath: '/avatars',
   productsPath: '/products',
+  categoriesPath: '/categories',
+  imagesPath: '/images',
 };

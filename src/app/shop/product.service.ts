@@ -7,6 +7,11 @@ import { environment } from '../config/environments';
 })
 export class ProductService {
   constructor(private client: HttpClient) {}
+  getCategories(): any {
+    return this.client.get(
+      `${environment.baseURL}${environment.categoriesPath}`
+    );
+  }
   getProducts(index: number, size: number): any {
     return this.client.get(
       `${environment.baseURL}${environment.productsPath}` +

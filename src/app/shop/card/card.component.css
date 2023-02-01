@@ -1,8 +1,7 @@
+
 mat-card {
-    max-width: 220px;
-    margin: 15px;
-    margin-top:8px;
-    margin-bottom:8px;
+    width: 210px;
+   
     box-shadow: 2.5px 2.5px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
     
   }

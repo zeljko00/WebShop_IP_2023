@@ -8,7 +8,7 @@
     [value]="value"
   >
   </mat-progress-spinner>
-  <mat-tab-group>
+  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
     <mat-tab>
       <ng-template mat-tab-label>
         <mat-icon class="example-tab-icon">shopping_cart</mat-icon>
@@ -23,6 +23,9 @@
             (selectionChange)="filter()"
           >
             <mat-option value="-">Sve</mat-option>
+            <mat-option *ngFor="let cat of categories" [value]="cat">{{
+              cat
+            }}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="fill">
