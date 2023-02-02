@@ -8,6 +8,7 @@ import { MessageService } from '../message.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { catchError, throwError } from 'rxjs';
+import { PersonalInfoSettingsComponent } from '../personal-info-settings/personal-info-settings.component';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -15,7 +16,7 @@ import { catchError, throwError } from 'rxjs';
 })
 export class ProfileComponent implements OnInit {
   flag: boolean = true;
-  @Input() user: User = new User();
+  user: User = new User();
   hasAvatar: boolean = false;
   avatar: string = '';
   constructor(
@@ -56,7 +57,14 @@ export class ProfileComponent implements OnInit {
           });
     });
   }
-  changePersonalInfo() {}
+  changePersonalInfo() {
+    const dialogRef: any = this.dialog.open(PersonalInfoSettingsComponent, {
+      width: '650px',
+    });
+    dialogRef.afterClosed().subscribe((result: string) => {
+      console.log(result);
+    });
+  }
   handleError(error: HttpErrorResponse, msg: string) {
     this.message.create('error', msg);
     return throwError(

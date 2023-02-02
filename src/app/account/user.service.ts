@@ -24,6 +24,12 @@ export class UserService {
       request
     );
   }
+  update(request: User): any {
+    return this.client.put(
+      `${environment.baseURL}${environment.usersPath}`,
+      request
+    );
+  }
   activate(request: ActivationRequest): any {
     return this.client.post(
       `${environment.baseURL}${environment.usersPath}/activate`,

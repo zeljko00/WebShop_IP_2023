@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
       password: [null, [Validators.required]],
       remember: [true],
     });
+    sessionStorage.setItem('guest', 'true');
   }
   handleError(error: HttpErrorResponse, msg: string) {
     console.log('erro handling');
@@ -97,6 +98,8 @@ export class LoginComponent implements OnInit {
                 .subscribe((activatd: boolean) => {
                   console.log(activatd);
                   if (activatd) {
+                    sessionStorage.clear();
+                    sessionStorage.setItem('guest', 'false');
                     sessionStorage.setItem('user', JSON.stringify(data));
                     this.message.create(
                       'success',

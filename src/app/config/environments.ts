@@ -6,4 +6,5 @@ export const environment = {
   categoriesPath: '/categories',
   imagesPath: '/images',
   messagesPath: '/messages',
+  purchasesPath: '/purchases',
 };

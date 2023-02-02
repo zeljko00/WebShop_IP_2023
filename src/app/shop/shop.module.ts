@@ -16,6 +16,7 @@ import { AntdModule } from '../antd/antd.module';
 import { HomepageComponent } from './homepage/homepage.component';
 import { CustomerSupportComponent } from './customer-support/customer-support.component';
 import { PersonalInfoSettingsComponent } from './personal-info-settings/personal-info-settings.component';
+import { BuyingModalComponent } from './buying-modal/buying-modal.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { PersonalInfoSettingsComponent } from './personal-info-settings/personal
     HomepageComponent,
     CustomerSupportComponent,
     PersonalInfoSettingsComponent,
+    BuyingModalComponent,
   ],
   imports: [
     CommonModule,

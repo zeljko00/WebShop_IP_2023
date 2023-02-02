@@ -54,3 +54,6 @@ mat-paginator{
     font-family: var(--mdc-typography-body1-font-family, var(--mdc-typography-font-family, Roboto, sans-serif));
     font-weight: var(--mdc-typography-body1-font-weight, 400);
   }
+  .history{
+    min-height: 55vh;
+  }

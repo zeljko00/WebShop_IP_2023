@@ -10,11 +10,17 @@ import { Router } from '@angular/router';
 })
 export class HomepageComponent implements OnInit {
   tabIndex: number = 0;
+  guest: boolean = true;
   saveTab() {
     sessionStorage.setItem('tab', this.tabIndex.toString());
   }
   ngOnInit(): void {
     if (sessionStorage.getItem('tab'))
       this.tabIndex = Number(sessionStorage.getItem('tab'));
+    if (
+      sessionStorage.getItem('guest') &&
+      sessionStorage.getItem('guest') === 'false'
+    )
+      this.guest = false;
   }
 }

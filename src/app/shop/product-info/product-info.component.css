@@ -30,9 +30,9 @@
     height: 600px;
 }
 .info{
-    width: 37vw;
+    width: 38vw;
     padding: 50px;
-    margin-left: 5vw;
+    margin-left: 4vw;
 }
 .flex-container{
     display: flex;
@@ -64,4 +64,14 @@
 #price-attribute{
     display: flex;
     align-items: center;
+}
+.description{
+    padding: 50px;
+    padding-top: 0px;
+    margin-left: 4vw;
+}
+.home-btn{
+    margin-left: 4vw;
+    padding-left: 50px;
+    margin-right: 80px;
 }

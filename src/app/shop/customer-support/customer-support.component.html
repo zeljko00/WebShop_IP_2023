@@ -5,9 +5,9 @@
     <textarea matInput [(ngModel)]="content"></textarea>
   </mat-form-field>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="submit()" cdkFocusInitial color="primary">
+<div mat-dialog-actions class="actions">
+  <button mat-raised-button (click)="submit()" cdkFocusInitial color="primary">
     Pošalji
   </button>
-  <button mat-button mat-dialog-close color="primary">Nazad</button>
+  <button mat-raised-button mat-dialog-close color="primary">Nazad</button>
 </div>

@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Odabir načina plaćanja</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Način plaćanja</mat-label>
+    <mat-select disableRipple [(ngModel)]="paying" (selectionChange)="render()">
+      <mat-option value="pri preuzimanju">Prilikom preuzimanja</mat-option>
+      <mat-option value="kartično">Kartično</mat-option>
+      <mat-option value="paypal">PayPal</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="full-width" *ngIf="dataRequired">
+    <mat-label>{{ requiredData }}</mat-label>
+    <input matInput [(ngModel)]="number" [formControl]="numberFormControl" />
+    <mat-error *ngIf="numberFormControl.hasError('required')">
+      Unesite {{ requiredData }}!
+    </mat-error>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="actions">
+  <button mat-raised-button (click)="submit()" cdkFocusInitial color="primary">
+    Kupi
+  </button>
+  <button mat-raised-button mat-dialog-close color="primary">Nazad</button>
+</div>

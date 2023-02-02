@@ -93,4 +93,10 @@ export class ProductService {
         size
     );
   }
+  buy(product: number, user: number, payment: string): any {
+    return this.client.post(
+      `${environment.baseURL}${environment.purchasesPath}`,
+      { payment: payment, userID: user, productDTO: { id: product } }
+    );
+  }
 }

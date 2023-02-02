@@ -19,6 +19,10 @@
       <p class="bolded-text attribute-value">{{ state }}</p>
     </div>
     <div class="flex-container">
+      <p class="attribute">Dostupnost:</p>
+      <p class="bolded-text attribute-value">{{ sold }}</p>
+    </div>
+    <div class="flex-container">
       <p class="attribute">Lokacija:</p>
       <p class="bolded-text attribute-value">{{ product.location }}</p>
     </div>
@@ -30,22 +34,27 @@
       <p class="attribute">Kontakt:</p>
       <p class="attribute-value">{{ product.contact }}</p>
     </div>
+    <br />
     <div class="flex-container">
-      <p class="attribute">Detaljan opis:</p>
+      <p class="attribute">Karakteristike</p>
+    </div>
+    <div class="flex-container" *ngFor="let attr of product.attributes">
+      <p class="attribute">{{ attr.name }}:</p>
       <p class="attribute-value">
-        {{ product.description }}
+        {{ attr.value }}
       </p>
     </div>
-    <div class="flex-container">
-      <button
-        mat-fab
-        color="primary"
-        aria-label="Example icon button with a delete icon"
-        (click)="home()"
-      >
-        <mat-icon>home</mat-icon>
-      </button>
-    </div>
+    <button
+      mat-fab
+      color="accent"
+      aria-label="Example icon button with a delete icon"
+      (click)="buy()"
+      matTooltip="Kupi proizvod"
+      class="btn"
+      *ngIf="!product.sold && !guest"
+    >
+      <mat-icon>shopping_basket</mat-icon>
+    </button>
   </div>
   <div class="gallery">
     <nz-carousel nzAutoPlay [nzEffect]="'fade'" nzEnableSwipe>
@@ -57,4 +66,23 @@
       </div>
     </nz-carousel>
   </div>
+</div>
+
+<div class="description">
+  <p class="attribute">Detaljan opis</p>
+  <p class="attribute-value">
+    {{ product.description }}
+  </p>
+</div>
+<div class="flex-container home-btn">
+  <button
+    mat-fab
+    color="primary"
+    aria-label="Example icon button with a delete icon"
+    (click)="home()"
+    class="btn"
+    matTooltip="Nazad"
+  >
+    <mat-icon>home</mat-icon>
+  </button>
 </div>

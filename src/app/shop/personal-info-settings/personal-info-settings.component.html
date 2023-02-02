@@ -1,1 +1,79 @@
-<p>personal-info-settings works!</p>
+<h1 mat-dialog-title>Izmjena ličnih podataka</h1>
+<div mat-dialog-content>
+  <div class="container">
+    <mat-form-field class="example-full-width">
+      <mat-label>Ime</mat-label>
+      <input
+        matInput
+        [formControl]="firstnameFormControl"
+        [(ngModel)]="user.firstname"
+      />
+      <mat-error *ngIf="firstnameFormControl.hasError('required')">
+        Unesite Vaše ime!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Prezime</mat-label>
+      <input
+        matInput
+        [formControl]="lastnameFormControl"
+        [(ngModel)]="user.lastname"
+      />
+      <mat-error *ngIf="lastnameFormControl.hasError('required')">
+        Unesite Vaše prezime!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input
+        type="email"
+        matInput
+        [formControl]="emailFormControl"
+        [(ngModel)]="user.email"
+      />
+      <mat-error
+        *ngIf="
+          emailFormControl.hasError('email') &&
+          !emailFormControl.hasError('required')
+        "
+      >
+        Unesite validan email!
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Unesite Vaš email!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Lozinka</mat-label>
+      <input
+        type="password"
+        matInput
+        [formControl]="passwordFormControl"
+        [(ngModel)]="user.password"
+        pattern=".*[#,$,%,&,_]+.*"
+      />
+      <mat-error *ngIf="passwordFormControl.errors?.['required']">
+        Lozinka je obavezna!
+      </mat-error>
+      <mat-error *ngIf="passwordFormControl.errors?.['minlength']">
+        Minimalno 8 karaktera!
+      </mat-error>
+      <mat-error *ngIf="passwordFormControl.errors?.['pattern']">
+        Minimalno 1 specijalni karakter (#,$,%,&,_)!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Grad</mat-label>
+      <input matInput [formControl]="cityFormControl" [(ngModel)]="user.city" />
+      <mat-error *ngIf="cityFormControl.hasError('required')">
+        Unesite lokaciju!
+      </mat-error>
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions class="actions">
+  <button mat-raised-button (click)="submit()" cdkFocusInitial color="primary">
+    Pošalji
+  </button>
+  <button mat-raised-button mat-dialog-close color="primary">Nazad</button>
+</div>

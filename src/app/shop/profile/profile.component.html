@@ -1,7 +1,12 @@
 <div class="container">
   <mat-toolbar color="primary">
     <div class="avatar-cont">
-      <img [src]="avatar" class="avatar" />
+      <img [src]="avatar" *ngIf="hasAvatar" class="avatar" />
+      <img
+        src="../../../assets/imgs/no-profile-img.png"
+        *ngIf="!hasAvatar"
+        class="avatar"
+      />
     </div>
     <div class="info-cont">
       {{ user.firstname + " " + user.lastname }}<br />{{ user.city }}

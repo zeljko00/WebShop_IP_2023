@@ -12,22 +12,24 @@
       </ng-template>
       <app-shop></app-shop>
     </mat-tab>
-    <mat-tab>
+    <mat-tab [disabled]="guest">
       <ng-template mat-tab-label>
         <mat-icon class="example-tab-icon">add_shopping_cart</mat-icon>
         Dodaj ponudu
       </ng-template>
       Content 2
     </mat-tab>
-    <mat-tab>
+    <mat-tab [disabled]="guest">
       <ng-template mat-tab-label>
         <mat-icon class="example-tab-icon">shopping_basket</mat-icon>
         Istorija kupovina
       </ng-template>
-      Content 3
+      <div class="history">
+        <app-purchase-history></app-purchase-history>
+      </div>
     </mat-tab>
 
-    <mat-tab>
+    <mat-tab [disabled]="guest">
       <ng-template mat-tab-label>
         <mat-icon class="example-tab-icon"> account_circle</mat-icon>
         Moj profil
