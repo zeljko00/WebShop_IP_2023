@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Korisnička podrška</h1>
+<div mat-dialog-content>
+  <mat-form-field class="full-width">
+    <mat-label>Poruka korisničkoj podršci</mat-label>
+    <textarea matInput [(ngModel)]="content"></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="submit()" cdkFocusInitial color="primary">
+    Pošalji
+  </button>
+  <button mat-button mat-dialog-close color="primary">Nazad</button>
+</div>

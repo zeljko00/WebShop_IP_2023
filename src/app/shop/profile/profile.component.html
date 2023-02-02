@@ -1,1 +1,43 @@
-<p>profile works!</p>
+<div class="container">
+  <mat-toolbar color="primary">
+    <div class="avatar-cont">
+      <img [src]="avatar" class="avatar" />
+    </div>
+    <div class="info-cont">
+      {{ user.firstname + " " + user.lastname }}<br />{{ user.city }}
+    </div>
+    <div class="control-cont">
+      <button
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+        class="control-btn"
+        matTooltip="Korisnička podrška"
+        (click)="contactSupport()"
+      >
+        <mat-icon class="control-icons">contact_support</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+        class="control-btn"
+        matTooltip="Izmjena informacija"
+        (click)="changePersonalInfo()"
+      >
+        <mat-icon class="control-icons">build</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+        class="control-btn"
+        matTooltip="Odjava"
+        (click)="logout()"
+      >
+        <mat-icon class="control-icons">power_settings_new</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+  <app-shop [myProducts]="flag"></app-shop>
+</div>

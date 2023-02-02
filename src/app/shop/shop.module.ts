@@ -4,28 +4,30 @@ import { CommonModule } from '@angular/common';
 import { ShopRoutingModule } from './shop-routing.module';
 import { CardComponent } from './card/card.component';
 import { MaterialModule } from '../material/material.module';
-import { NavbarComponent } from './navbar/navbar.component';
 import { HeaderComponent } from './header/header.component';
 import { ShopComponent } from './shop/shop.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PurchaseHistoryComponent } from './purchase-history/purchase-history.component';
-import { SaleComponent } from './sale/sale.component';
 import { ProductInfoComponent } from './product-info/product-info.component';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatPaginatorIntlSrb } from './CustomPaginator';
 import { FormsModule } from '@angular/forms';
 import { AntdModule } from '../antd/antd.module';
+import { HomepageComponent } from './homepage/homepage.component';
+import { CustomerSupportComponent } from './customer-support/customer-support.component';
+import { PersonalInfoSettingsComponent } from './personal-info-settings/personal-info-settings.component';
 
 @NgModule({
   declarations: [
     CardComponent,
-    NavbarComponent,
     HeaderComponent,
     ShopComponent,
     ProfileComponent,
     PurchaseHistoryComponent,
-    SaleComponent,
     ProductInfoComponent,
+    HomepageComponent,
+    CustomerSupportComponent,
+    PersonalInfoSettingsComponent,
   ],
   imports: [
     CommonModule,

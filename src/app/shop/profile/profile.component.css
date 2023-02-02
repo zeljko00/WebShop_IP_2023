@@ -1,0 +1,43 @@
+.avatar{
+    height: 110px;
+}
+mat-toolbar{
+    height: 140px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    width: calc ( 100vw - 80px );
+}
+.container{
+  
+}
+.avatar-cont{
+    width: 250px;
+}
+.info-cont{
+    flex-grow: 1;
+    text-align: center;
+}
+.controls-cont{
+    width: 250px;
+
+}
+.control-btn{
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+}
+.control-icons {
+    font-size: 36px;
+    width: 36px;
+    height:36px;
+    line-height: 36px;
+  }
+  .mat-button-ripple {
+    font-size: inherit;
+    width: inherit;
+    height: inherit;
+    line-height: inherit;
+  }

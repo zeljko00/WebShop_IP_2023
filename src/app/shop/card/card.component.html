@@ -12,7 +12,9 @@
         [src]="image"
         alt="Proizvod nema sliku!"
         class="product-img"
+        *ngIf="hasImage"
       />
+      <p *ngIf="!hasImage" class="no-image">Proizvod nema sliku!</p>
     </mat-card-content>
     <mat-card-footer>
       <p class="price-p">

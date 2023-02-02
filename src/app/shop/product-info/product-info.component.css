@@ -7,7 +7,7 @@
   }
   .product-img{
     max-width: 100%;
-    height: 600px;
+    height: 550px;
     margin-left:auto;
     margin-right: auto;
     border-radius: 20px
@@ -30,8 +30,9 @@
     height: 600px;
 }
 .info{
-    max-width: 42vw;
+    width: 37vw;
     padding: 50px;
+    margin-left: 5vw;
 }
 .flex-container{
     display: flex;

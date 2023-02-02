@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
@@ -15,6 +21,8 @@ import { Router } from '@angular/router';
 })
 export class ShopComponent implements OnInit, AfterViewInit {
   @ViewChild('paginator') paginator!: MatPaginator;
+
+  @Input() myProducts: boolean = false;
 
   categories: Array<string> = [];
 
@@ -45,44 +53,32 @@ export class ShopComponent implements OnInit, AfterViewInit {
     private router: Router
   ) {
     if (router.getCurrentNavigation()!.extras.state) {
-      console.log('returning');
       this.return = true;
-      this.readFilters();
     }
   }
 
   handlePageEvent(event: PageEvent) {
-    console.log(
-      'from ' + this.length + ' ' + this.pageSize + ' ' + this.pageIndex
-    );
     this.pageSize = event.pageSize;
     this.length = event.length;
     this.pageIndex = event.pageIndex;
-    console.log(
-      'to ' + +this.length + ' ' + this.pageSize + ' ' + this.pageIndex
-    );
-    this.change();
+    this.fetch();
   }
   ngAfterViewInit() {
-    if (this.return) {
-      console.log('after view');
-      console.log(this.pageSize);
-      console.log(this.pageIndex);
-      this.paginator.pageIndex = this.pageIndex;
-      this.paginator.pageSize = this.pageSize;
-      this.paginator.length = this.length;
-      if (this.paginator.hasNextPage()) {
-        this.paginator.nextPage();
-        this.paginator.previousPage();
-      } else if (this.paginator.hasPreviousPage()) {
-        this.paginator.previousPage();
-        this.paginator.nextPage();
-      }
-    }
+    // if (this.return) {
+    //   this.paginator.pageIndex = this.pageIndex;
+    //   this.paginator.pageSize = this.pageSize;
+    //   this.paginator.length = this.length;
+    //   if (this.paginator.hasNextPage()) {
+    //     this.paginator.nextPage();
+    //     this.paginator.previousPage();
+    //   } else if (this.paginator.hasPreviousPage()) {
+    //     this.paginator.previousPage();
+    //     this.paginator.nextPage();
+    //   }
+    // }
   }
   ngOnInit(): void {
-    const temp: Array<Product> = [];
-    this.spinner = true;
+    if (this.return === true && this.myProducts === false) this.readFilters();
     this.service
       .getCategories()
       .pipe(
@@ -97,35 +93,9 @@ export class ShopComponent implements OnInit, AfterViewInit {
         });
         this.categories = temp;
       });
-    if (this.return) {
-      this.change();
-    } else {
-      this.service
-        .getProducts(this.pageIndex, this.pageSize)
-        .pipe(
-          catchError((error: any) =>
-            this.handleError(error, 'Neuspješno dobavljanje podataka')
-          )
-        )
-        .subscribe((data: any) => {
-          console.log(
-            'before ' + this.length + ' ' + this.pageSize + ' ' + this.pageIndex
-          );
-          this.spinner = false;
-          if (data.totalElements === 0)
-            this.message.create('info', 'Ne postoje takvi proizvodi!');
-          // console.log(data);
-          this.products = data.products;
-          this.length = data.totalElements;
-          console.log(
-            'fter ' + this.length + ' ' + this.pageSize + ' ' + this.pageIndex
-          );
-        });
-    }
-    // this.products = temp;
+    this.fetch();
   }
   handleError(error: HttpErrorResponse, msg: string) {
-    console.log('erro handling');
     this.spinner = false;
     this.message.create('error', msg);
     return throwError(
@@ -135,11 +105,12 @@ export class ShopComponent implements OnInit, AfterViewInit {
   readFilters() {
     if (sessionStorage.getItem('returnData')) {
       this.data = JSON.parse(sessionStorage.getItem('returnData') || '');
-
+      console.log('reading');
+      console.log(this.data);
       let searchVal = this.data.searchValue;
       let minVal = this.data.min;
       let maxVal = this.data.max;
-      if (this.searchValue === '-') searchVal = '';
+      if (this.data.searchValue === '-') searchVal = '';
       if (this.data.min === null || this.data.min === '-1') minVal = '';
       if (this.data.max === null || this.data.max === '-1') maxVal = '';
       this.min = minVal;
@@ -172,59 +143,80 @@ export class ShopComponent implements OnInit, AfterViewInit {
       length: this.length,
       pageSize: this.pageSize,
     };
+    console.log('saving');
     console.log(obj);
-    if (this.return === false) {
-      sessionStorage.setItem('returnData', JSON.stringify(obj));
-    }
+
+    sessionStorage.setItem('returnData', JSON.stringify(obj));
   }
-  change() {
+  fetch() {
     let searchVal = this.searchValue;
     let minVal = this.min;
     let maxVal = this.max;
     if (this.searchValue === '') searchVal = '-';
     if (this.min === null || this.min === '') minVal = '-1';
     if (this.max === null || this.max === '') maxVal = '-1';
+    console.log(this.myProducts);
+    if (this.myProducts === false) this.saveFilters();
 
-    this.saveFilters();
-    console.log(
-      'data before fetch ' +
-        this.length +
-        ' ' +
-        this.pageSize +
-        ' ' +
-        this.pageIndex
-    );
-    console.log('filtering by title ' + searchVal);
     const temp: Array<Product> = [];
-    this.service
-      .getProductsFiltered(
-        minVal,
-        maxVal,
-        this.used,
-        this.category,
-        searchVal,
-        this.pageIndex,
-        this.pageSize
-      )
-      .pipe(
-        catchError((error: any) =>
-          this.handleError(error, 'Neuspješno dobavljanje podataka')
+
+    if (this.myProducts === true) {
+      const id: number = JSON.parse(sessionStorage.getItem('user') || '').id;
+      this.service
+        .getProductsFilteredBySeller(
+          minVal,
+          maxVal,
+          this.used,
+          this.category,
+          searchVal,
+          this.pageIndex,
+          this.pageSize,
+          id
         )
-      )
-      .subscribe((data: any) => {
-        this.spinner = false;
-        // console.log(data);
-        if (data.totalElements === 0)
-          this.message.create('info', 'Ne postoje takvi proizvodi!');
-        this.products = data.products;
-        this.length = data.totalElements;
-        console.log(
-          'after ' + this.length + ' ' + this.pageSize + ' ' + this.pageIndex
-        );
-      });
+        .pipe(
+          catchError((error: any) =>
+            this.handleError(error, 'Neuspješno dobavljanje podataka')
+          )
+        )
+        .subscribe((data: any) => {
+          this.spinner = false;
+
+          if (data.totalElements === 0)
+            this.message.create('info', 'Ne postoje takvi proizvodi!');
+          this.products = data.products;
+          this.length = data.totalElements;
+          this.paginator.length = this.length;
+        });
+    } else {
+      this.service
+        .getProductsFiltered(
+          minVal,
+          maxVal,
+          this.used,
+          this.category,
+          searchVal,
+          this.pageIndex,
+          this.pageSize
+        )
+        .pipe(
+          catchError((error: any) =>
+            this.handleError(error, 'Neuspješno dobavljanje podataka')
+          )
+        )
+        .subscribe((data: any) => {
+          this.spinner = false;
+
+          if (data.totalElements === 0)
+            this.message.create('info', 'Ne postoje takvi proizvodi!');
+          this.products = data.products;
+          this.length = data.totalElements;
+          this.paginator.length = this.length;
+        });
+    }
   }
   filter() {
-    this.change();
+    this.pageIndex = 0;
+    this.fetch();
     this.paginator.firstPage();
   }
   clearSearch() {

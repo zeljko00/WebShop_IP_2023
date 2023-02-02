@@ -11,6 +11,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [],
@@ -27,6 +29,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatInputModule,
     MatIconModule,
     MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
   ],
   exports: [
     MatProgressSpinnerModule,
@@ -40,6 +44,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatInputModule,
     MatIconModule,
     MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
   ],
 })
 export class MaterialModule {}

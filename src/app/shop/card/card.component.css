@@ -1,6 +1,6 @@
 
 mat-card {
-    width: 210px;
+    width: 230px;
    cursor: pointer;
     box-shadow: 2.5px 2.5px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
     
@@ -9,7 +9,7 @@ mat-card {
     border: solid 1.5px #14ebaa;
   }
   mat-card-content{
-    height: 150px;
+    height: 180px;
     display: flex;
     align-items: center;
   }
@@ -40,5 +40,9 @@ padding-bottom: 0px;
   }
   .my-card{
     border: solid 1.5px #1890ff;;
+  }
+  .no-image{
+    margin-left: auto;
+    margin-right:auto
   }
   

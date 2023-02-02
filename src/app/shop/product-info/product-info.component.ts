@@ -14,9 +14,11 @@ export class ProductInfoComponent implements OnInit {
   state: string = 'KORIŠTENO';
   noImage: boolean = false;
   constructor(private router: Router) {
-    console.log(this.router.getCurrentNavigation()!.extras.state);
-    this.product = this.router.getCurrentNavigation()!.extras.state;
-    if (this.product.unused) this.state = 'NOVO';
+    if (this.router.getCurrentNavigation()!.extras.state) {
+      console.log(this.router.getCurrentNavigation()!.extras.state);
+      this.product = this.router.getCurrentNavigation()!.extras.state;
+      if (this.product.unused) this.state = 'NOVO';
+    } else router.navigate(['shop']);
   }
   ngOnInit() {
     const temp: Array<string> = [];
@@ -28,6 +30,6 @@ export class ProductInfoComponent implements OnInit {
     this.images = temp;
   }
   home() {
-    this.router.navigate(['shop'], { state: { page: 2, size: 10 } });
+    this.router.navigate(['shop'], { state: { return: true } });
   }
 }
