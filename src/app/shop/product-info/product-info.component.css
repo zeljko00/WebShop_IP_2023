@@ -75,3 +75,21 @@
     padding-left: 50px;
     margin-right: 80px;
 }
+.comments{
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 70px;
+}
+app-comment-box{
+    margin-top:30px;
+}
+.add-comment{
+    margin-top: 60px;
+    width: 750px;
+}
+.full-width{
+    width: 100%;
+    margin-bottom: 15px;
+}

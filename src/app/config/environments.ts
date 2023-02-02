@@ -7,4 +7,5 @@ export const environment = {
   imagesPath: '/images',
   messagesPath: '/messages',
   purchasesPath: '/purchases',
+  commentsPath: '/comments',
 };

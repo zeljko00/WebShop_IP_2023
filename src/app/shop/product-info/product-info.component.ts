@@ -8,6 +8,7 @@ import { ProductService } from '../product.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { Comment } from 'src/app/model/Comment';
 
 @Component({
   selector: 'app-product-info',
@@ -21,6 +22,8 @@ export class ProductInfoComponent implements OnInit {
   sold: string = 'NA STANJU';
   noImage: boolean = false;
   guest: boolean = true;
+  change: boolean = false;
+  commentContent: string = '';
   constructor(
     private router: Router,
     public dialog: MatDialog,
@@ -35,6 +38,7 @@ export class ProductInfoComponent implements OnInit {
     } else router.navigate(['shop']);
   }
   ngOnInit() {
+    console.log(this.product);
     if (
       sessionStorage.getItem('guest') &&
       sessionStorage.getItem('guest') === 'false'
@@ -81,5 +85,27 @@ export class ProductInfoComponent implements OnInit {
     return throwError(
       () => new Error('Something bad happened; please try again later.')
     );
+  }
+  submit() {
+    if (this.commentContent !== '') {
+      const data: Comment = new Comment();
+      data.content = this.commentContent;
+      data.productId = this.product.id;
+      data.creatorInfo = JSON.parse(sessionStorage.getItem('user') || '').id;
+      this.service
+        .comment(data)
+        .pipe(
+          catchError((error: any) =>
+            this.handleError(error, 'Slanje komentara nije uspjelo!')
+          )
+        )
+        .subscribe((com: any) => {
+          console.log(com);
+          this.message.create('success', 'Komentar sačuvan!');
+          this.commentContent = '';
+          this.product.comments.push(com);
+          this.change = !this.change;
+        });
+    }
   }
 }
