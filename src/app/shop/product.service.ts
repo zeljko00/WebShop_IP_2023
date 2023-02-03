@@ -121,9 +121,9 @@ export class ProductService {
       comment
     );
   }
-  addProduct(product: Product) {
+  addProduct(product: Product, rand: number) {
     return this.client.post(
-      `${environment.baseURL}${environment.productsPath}`,
+      `${environment.baseURL}${environment.productsPath}/` + rand,
       product
     );
   }

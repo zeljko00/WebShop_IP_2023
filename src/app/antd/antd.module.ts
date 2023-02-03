@@ -11,6 +11,8 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 @NgModule({
   declarations: [],
@@ -28,6 +30,8 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
     NzIconModule,
     NzMessageModule,
     NzSpinModule,
+    NzUploadModule,
+    NzModalModule,
   ],
   exports: [
     ReactiveFormsModule,
@@ -42,6 +46,8 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
     NzIconModule,
     NzMessageModule,
     NzSpinModule,
+    NzUploadModule,
+    NzModalModule,
   ],
 })
 export class AntdModule {}

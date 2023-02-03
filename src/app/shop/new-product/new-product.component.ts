@@ -1,5 +1,13 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpEvent,
+  HttpEventType,
+  HttpRequest,
+  HttpResponse,
+} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NzUploadFile, NzUploadXHRArgs } from 'ng-zorro-antd/upload';
 import {
   AbstractControl,
   FormControl,
@@ -14,6 +22,7 @@ import { Category } from 'src/app/model/Category';
 import { Product } from 'src/app/model/Product';
 import { SpecAttribute } from 'src/app/model/SpecAttribute';
 import { ProductService } from '../product.service';
+import { environment } from 'src/app/config/environments';
 
 @Component({
   selector: 'app-new-product',
@@ -22,16 +31,20 @@ import { ProductService } from '../product.service';
 })
 export class NewProductComponent implements OnInit {
   categories: Array<Category> = [];
-
   title = new FormControl('', [Validators.required]);
   category = new FormControl('', [Validators.required]);
   contact = new FormControl('', [Validators.required]);
   location = new FormControl('', [Validators.required]);
   desc = new FormControl('');
   price = new FormControl('', [Validators.required, this.priceValidator()]);
+
+  random: number = Math.random() * 1000000;
+  url = `${environment.baseURL + environment.imagesPath}`;
+
   constructor(
     private service: ProductService,
-    private message: NzMessageService
+    private message: NzMessageService,
+    private client: HttpClient
   ) {}
   state: boolean = true;
   attrs: Array<Attribute> = [];
@@ -67,7 +80,7 @@ export class NewProductComponent implements OnInit {
       p.id = null;
       console.log(p);
       this.service
-        .addProduct(p)
+        .addProduct(p, this.random)
         .pipe(
           catchError((error: any) =>
             this.handleError(error, 'Neuspješno dodavanje ponude!')
@@ -84,6 +97,7 @@ export class NewProductComponent implements OnInit {
           this.location.reset();
           this.contact.reset();
           this.attrs = [];
+          this.fileList = [];
         });
     }
   }
@@ -126,4 +140,64 @@ export class NewProductComponent implements OnInit {
       () => new Error('Something bad happened; please try again later.')
     );
   }
+
+  getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+
+  previewImage: string | undefined = '';
+  previewVisible = false;
+
+  fileList: NzUploadFile[] = [];
+
+  handlePreview = async (file: NzUploadFile): Promise<void> => {
+    if (!file.url && !file['preview']) {
+      file['preview'] = await this.getBase64(file.originFileObj!);
+    }
+    this.previewImage = file.url || file['preview'];
+    this.previewVisible = true;
+  };
+  // addImage(item: NzUploadXHRArgs) {
+  //   console.log(item);
+  // }
+
+  setMediaUploadHeaders = (file: NzUploadFile) => {
+    return {
+      'Content-Type': 'multipart/form-data',
+      Accept: 'application/json',
+    };
+  };
+  customUploadReq = (item: any) => {
+    const formData = new FormData();
+    formData.append('image', item.file as any); // tslint:disable-next-line:no-any
+    formData.append('id', this.random.toString());
+    const req = new HttpRequest('POST', item.action, formData, {
+      reportProgress: true,
+      withCredentials: false,
+    });
+    console.log(item);
+    // Always return a `Subscription` object, nz-upload will automatically unsubscribe at the appropriate time
+    return this.client.request(req).subscribe(
+      (event: any) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          if (event.total || 1 > 0) {
+            (event as any).percent = (event.loaded / (event.total || 1)) * 100; // tslint:disable-next-line:no-any
+          }
+          // To process the upload progress bar, you must specify the `percent` attribute to indicate progress.
+          item.onProgress(event, item.file);
+        } else if (event instanceof HttpResponse) {
+          /* success */
+          item.onSuccess(event.body || '', item.file, event);
+        }
+      },
+      (err: any) => {
+        /* error */
+        item.onError(err, item.file);
+      }
+    );
+  };
 }

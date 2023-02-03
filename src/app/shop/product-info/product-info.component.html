@@ -71,7 +71,10 @@
     <div>
       <nz-carousel nzAutoPlay [nzEffect]="'fade'" nzEnableSwipe>
         <div nz-carousel-content *ngIf="noImage">
-          <img src="../../../assets/imgs/no-photo.png" class="no-img" />
+          <img
+            src="../../../assets/imgs/no-image-icon.png"
+            class="product-img"
+          />
         </div>
         <div nz-carousel-content *ngFor="let img of images">
           <img [src]="img" class="product-img" />
@@ -81,7 +84,7 @@
   </div>
 </div>
 
-<div class="description">
+<div class="description" *ngIf="product.description !== ''">
   <p class="attribute">Detaljan opis</p>
   <p class="attribute-value">
     {{ product.description }}

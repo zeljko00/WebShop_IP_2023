@@ -69,6 +69,34 @@
     <input matInput /> </mat-form-field
   ><br />
 
+  <div class="clearfix">
+    <nz-upload
+      [nzAction]="url"
+      nzListType="picture-card"
+      [(nzFileList)]="fileList"
+      [nzShowButton]="fileList.length < 6"
+      [nzCustomRequest]="customUploadReq"
+      [nzPreview]="handlePreview"
+      [nzHeaders]="setMediaUploadHeaders"
+      [nzName]="'file'"
+    >
+      <div>
+        <span nz-icon nzType="plus"></span>
+        <div style="margin-top: 8px">Dodak</div>
+      </div>
+    </nz-upload>
+    <nz-modal
+      [nzVisible]="previewVisible"
+      [nzContent]="modalContent"
+      [nzFooter]="null"
+      (nzOnCancel)="previewVisible = false"
+    >
+      <ng-template #modalContent>
+        <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
+      </ng-template>
+    </nz-modal>
+  </div>
+
   <button
     mat-raised-button
     (click)="submit()"

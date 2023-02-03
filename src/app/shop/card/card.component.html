@@ -14,11 +14,18 @@
         class="product-img"
         *ngIf="hasImage"
       />
-      <p *ngIf="!hasImage" class="no-image">Proizvod nema sliku!</p>
+      <img
+        mat-card-image
+        src="../../../assets/imgs/no-image-icon.png"
+        alt="Proizvod nema sliku!"
+        class="product-img"
+        *ngIf="!hasImage"
+      />
     </mat-card-content>
     <mat-card-footer>
       <p class="price-p">
-        <span>{{ product.price + " " }}BAM</span
+        <span class="big-font">{{ product.price }}</span
+        ><span> BAM</span
         ><span *ngIf="product.sold" class="sold-note">PRODATO</span>
       </p>
     </mat-card-footer>
