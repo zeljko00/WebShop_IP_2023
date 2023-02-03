@@ -1,0 +1,80 @@
+<div class="container">
+  <mat-form-field class="full-width">
+    <mat-label>Naslov</mat-label>
+    <input matInput [formControl]="title" />
+    <mat-error *ngIf="title.hasError('required')">
+      Naziv je obavezan!
+    </mat-error> </mat-form-field
+  ><br />
+  <mat-form-field appearance="fill">
+    <mat-label>Kategorija</mat-label>
+    <mat-select
+      disableRipple
+      (selectionChange)="categoryChange()"
+      [formControl]="category"
+    >
+      <mat-option [value]="cat.name" *ngFor="let cat of categories">{{
+        cat.name
+      }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="category.hasError('required')">
+      Kategorija je obavezna!
+    </mat-error> </mat-form-field
+  ><br />
+  <mat-form-field>
+    <mat-label>Cijena</mat-label>
+    <input matInput [formControl]="price" />
+    <mat-error *ngIf="price.hasError('required')">
+      Cijena je obavezna!
+    </mat-error>
+    <mat-error *ngIf="!price.hasError('required') && price.hasError('format')">
+      Unesite validan broj!
+    </mat-error> </mat-form-field
+  ><br />
+  <mat-form-field class="full-width">
+    <mat-label>Lokacija</mat-label>
+    <input matInput [formControl]="location" />
+    <mat-error *ngIf="location.hasError('required')">
+      Lokacija je obavezna!
+    </mat-error> </mat-form-field
+  ><br />
+  <mat-form-field class="full-width">
+    <mat-label>Kontakt</mat-label>
+    <input matInput [formControl]="contact" />
+    <mat-error *ngIf="contact.hasError('required')">
+      Kontakt je obavezan!
+    </mat-error> </mat-form-field
+  ><br />
+  <mat-form-field class="full-width">
+    <mat-label>Detaljan opis</mat-label>
+    <textarea matInput [formControl]="desc"></textarea></mat-form-field
+  ><br />
+
+  <mat-chip-listbox aria-label="Fish selection">
+    <mat-chip-option (click)="selectedNew()" color="primary" selected
+      >NOVO</mat-chip-option
+    >
+    <mat-chip-option (click)="selectedUsed()" color="accent"
+      >POLOVNO</mat-chip-option
+    >
+  </mat-chip-listbox>
+
+  <mat-form-field
+    ngDefaultControl
+    class="full-width"
+    *ngFor="let attr of attrs"
+    [(ngModel)]="attr.value"
+  >
+    <mat-label>{{ attr.name }}</mat-label>
+    <input matInput /> </mat-form-field
+  ><br />
+
+  <button
+    mat-raised-button
+    (click)="submit()"
+    color="primary"
+    class="submit-btn"
+  >
+    Sačuvaj
+  </button>
+</div>

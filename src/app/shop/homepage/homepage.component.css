@@ -55,5 +55,20 @@ mat-paginator{
     font-weight: var(--mdc-typography-body1-font-weight, 400);
   }
   .history{
-    min-height: 55vh;
+    min-height: 75vh;
+  }
+  .form-cont{
+    display: flex;
+    justify-content: center;
+    min-height: 75vh;
+  }
+  app-new-product{
+    width: 80%;
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+  }
+  div{
+    overflow: hidden;
   }

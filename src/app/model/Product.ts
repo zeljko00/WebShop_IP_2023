@@ -3,7 +3,7 @@ import { Attribute } from './Attribute';
 import { Image } from './Image';
 import { Seller } from './Seller';
 export class Product {
-  id: number = -1;
+  id: number | null = -1;
   title: string = '';
   description: string = '';
   price: number = -1;

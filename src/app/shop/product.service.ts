@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../config/environments';
 import { Comment } from '../model/Comment';
+import { Product } from '../model/Product';
 
 @Injectable({
   providedIn: 'root',
@@ -104,6 +105,12 @@ export class ProductService {
     return this.client.post(
       `${environment.baseURL}${environment.commentsPath}`,
       comment
+    );
+  }
+  addProduct(product: Product) {
+    return this.client.post(
+      `${environment.baseURL}${environment.productsPath}`,
+      product
     );
   }
 }

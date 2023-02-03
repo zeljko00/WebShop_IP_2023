@@ -18,6 +18,7 @@ import { CustomerSupportComponent } from './customer-support/customer-support.co
 import { PersonalInfoSettingsComponent } from './personal-info-settings/personal-info-settings.component';
 import { BuyingModalComponent } from './buying-modal/buying-modal.component';
 import { CommentBoxComponent } from './comment-box/comment-box.component';
+import { NewProductComponent } from './new-product/new-product.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { CommentBoxComponent } from './comment-box/comment-box.component';
     PersonalInfoSettingsComponent,
     BuyingModalComponent,
     CommentBoxComponent,
+    NewProductComponent,
   ],
   imports: [
     CommonModule,

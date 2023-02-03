@@ -1,0 +1,11 @@
+.full-width{
+    width: 100%;
+    min-width: 300px
+}
+.container{
+    width: 100%;
+}
+
+mat-chip-listbox{
+    margin-bottom: 30px;
+}
