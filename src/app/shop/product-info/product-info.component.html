@@ -51,20 +51,33 @@
       (click)="buy()"
       matTooltip="Kupi proizvod"
       class="btn"
-      *ngIf="!product.sold && !guest"
+      *ngIf="!product.sold && !guest && !my"
     >
       <mat-icon>shopping_basket</mat-icon>
     </button>
+    <button
+      mat-fab
+      color="accent"
+      aria-label="Example icon button with a delete icon"
+      (click)="delete()"
+      matTooltip="Izbriši proizvod"
+      class="btn"
+      *ngIf="!guest && my"
+    >
+      <mat-icon>delete_forever</mat-icon>
+    </button>
   </div>
   <div class="gallery">
-    <nz-carousel nzAutoPlay [nzEffect]="'fade'" nzEnableSwipe>
-      <div nz-carousel-content *ngIf="noImage">
-        <img src="../../../assets/imgs/no-photo.png" class="no-img" />
-      </div>
-      <div nz-carousel-content *ngFor="let img of images">
-        <img [src]="img" class="product-img" />
-      </div>
-    </nz-carousel>
+    <div>
+      <nz-carousel nzAutoPlay [nzEffect]="'fade'" nzEnableSwipe>
+        <div nz-carousel-content *ngIf="noImage">
+          <img src="../../../assets/imgs/no-photo.png" class="no-img" />
+        </div>
+        <div nz-carousel-content *ngFor="let img of images">
+          <img [src]="img" class="product-img" />
+        </div>
+      </nz-carousel>
+    </div>
   </div>
 </div>
 

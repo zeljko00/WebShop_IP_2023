@@ -56,21 +56,23 @@ export class LoginComponent implements OnInit {
       width: '370px',
     });
     dialogRef.afterClosed().subscribe((result: string) => {
-      const request = new ActivationRequest(
-        this.validateForm.value.userName,
-        this.validateForm.value.password,
-        result
-      );
-      this.service
-        .activate(request)
-        .pipe(
-          catchError((error: any) =>
-            this.handleError(error, 'Nevalidan kod za aktivaciju!')
+      if (result !== null && result !== '') {
+        const request = new ActivationRequest(
+          this.validateForm.value.userName,
+          this.validateForm.value.password,
+          result
+        );
+        this.service
+          .activate(request)
+          .pipe(
+            catchError((error: any) =>
+              this.handleError(error, 'Nevalidan kod za aktivaciju!')
+            )
           )
-        )
-        .subscribe((data: any) => {
-          this.submitForm();
-        });
+          .subscribe((data: any) => {
+            this.submitForm();
+          });
+      }
     });
   }
   submitForm(): void {

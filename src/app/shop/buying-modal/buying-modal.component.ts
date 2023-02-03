@@ -15,13 +15,15 @@ export class BuyingModalComponent {
   paying: string = 'pri preuzimanju';
   constructor(public matDialogRef: MatDialogRef<BuyingModalComponent>) {}
   render() {
+    console.log('rendering ' + this.paying);
     if (this.paying === 'kartično') {
       this.dataRequired = true;
       this.requiredData = 'Broj kartice';
-    } else if ((this.paying = 'paypal')) {
+    } else if (this.paying === 'paypal') {
       this.dataRequired = true;
       this.requiredData = 'ID';
     } else {
+      console.log('bla');
       this.dataRequired = false;
       this.number = '';
     }

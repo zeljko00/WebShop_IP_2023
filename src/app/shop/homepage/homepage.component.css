@@ -72,3 +72,6 @@ mat-paginator{
   div{
     overflow: hidden;
   }
+  .full-height{
+    min-height: 70vh;
+  }

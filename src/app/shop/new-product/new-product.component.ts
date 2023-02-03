@@ -42,6 +42,11 @@ export class NewProductComponent implements OnInit {
     });
   }
   submit() {
+    this.title.markAsTouched();
+    this.contact.markAsTouched();
+    this.price.markAsTouched();
+    this.category.markAsTouched();
+    this.location.markAsTouched();
     if (
       this.title.valid &&
       this.price.valid &&
@@ -72,6 +77,13 @@ export class NewProductComponent implements OnInit {
           console.log('id= ' + data.id);
           this.message.create('success', 'Ponuda uspješno kreirana!');
           //dodavanje atributa
+          this.title.reset();
+          this.category.reset();
+          this.price.reset();
+          this.desc.reset();
+          this.location.reset();
+          this.contact.reset();
+          this.attrs = [];
         });
     }
   }

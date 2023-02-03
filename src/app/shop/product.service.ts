@@ -95,10 +95,24 @@ export class ProductService {
         size
     );
   }
-  buy(product: number, user: number, payment: string): any {
+  buy(
+    productId: number,
+    productTitle: string,
+    productPrice: number,
+    productCategory: string,
+    user: number,
+    payment: string
+  ): any {
     return this.client.post(
       `${environment.baseURL}${environment.purchasesPath}`,
-      { payment: payment, userID: user, productDTO: { id: product } }
+      {
+        payment: payment,
+        userID: user,
+        productTitle: productTitle,
+        productCategory: productCategory,
+        productPrice: productPrice,
+        productId: productId,
+      }
     );
   }
   comment(comment: Comment) {
@@ -111,6 +125,14 @@ export class ProductService {
     return this.client.post(
       `${environment.baseURL}${environment.productsPath}`,
       product
+    );
+  }
+  delete(product: number, seller: number) {
+    return this.client.delete(
+      `${environment.baseURL}${environment.productsPath}/` +
+        seller +
+        '/' +
+        product
     );
   }
 }

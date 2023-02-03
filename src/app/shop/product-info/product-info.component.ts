@@ -9,6 +9,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Comment } from 'src/app/model/Comment';
+import { User } from 'src/app/model/User';
 
 @Component({
   selector: 'app-product-info',
@@ -23,6 +24,7 @@ export class ProductInfoComponent implements OnInit {
   noImage: boolean = false;
   guest: boolean = true;
   change: boolean = false;
+  my: boolean = false;
   commentContent: string = '';
   constructor(
     private router: Router,
@@ -38,6 +40,10 @@ export class ProductInfoComponent implements OnInit {
     } else router.navigate(['shop']);
   }
   ngOnInit() {
+    if (sessionStorage.getItem('user')) {
+      const user: User = JSON.parse(sessionStorage.getItem('user') || '');
+      this.my = user.id === this.product.seller.id;
+    }
     console.log(this.product);
     if (
       sessionStorage.getItem('guest') &&
@@ -61,23 +67,27 @@ export class ProductInfoComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result: string) => {
       console.log(result);
-
-      this.service
-        .buy(
-          this.product.id,
-          JSON.parse(sessionStorage.getItem('user') || '').id,
-          result
-        )
-        .pipe(
-          catchError((error: any) =>
-            this.handleError(error, 'Neuspješna kupovina!')
+      if (result != null && result !== '') {
+        this.service
+          .buy(
+            this.product.id,
+            this.product.title,
+            this.product.price,
+            this.product.category,
+            JSON.parse(sessionStorage.getItem('user') || '').id,
+            result
           )
-        )
-        .subscribe((data: any) => {
-          this.message.create('success', 'Uspješna kupovina!');
-          this.sold = 'PRODATO';
-          this.product.sold = true;
-        });
+          .pipe(
+            catchError((error: any) =>
+              this.handleError(error, 'Neuspješna kupovina!')
+            )
+          )
+          .subscribe((data: any) => {
+            this.message.create('success', 'Uspješna kupovina!');
+            this.sold = 'PRODATO';
+            this.product.sold = true;
+          });
+      }
     });
   }
   handleError(error: HttpErrorResponse, msg: string) {
@@ -107,5 +117,23 @@ export class ProductInfoComponent implements OnInit {
           this.change = !this.change;
         });
     }
+  }
+  delete() {
+    console.log('deleting');
+    this.service
+      .delete(
+        this.product.id,
+        JSON.parse(sessionStorage.getItem('user') || '').id
+      )
+      .pipe(
+        catchError((error: any) =>
+          this.handleError(error, 'Brisanje nije uspjelo')
+        )
+      )
+      .subscribe((com: any) => {
+        console.log(com);
+        this.message.create('success', 'Ponuda obrisana!');
+        this.router.navigate(['shop'], { state: { return: true } });
+      });
   }
 }

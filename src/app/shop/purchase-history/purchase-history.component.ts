@@ -52,7 +52,7 @@ export class PurchaseHistoryComponent implements OnInit {
   }
   getTotalCost() {
     return this.dataSource
-      .map((t) => t.productDTO.price)
+      .map((t) => t.productPrice)
       .reduce((acc, value) => acc + value, 0);
   }
 }

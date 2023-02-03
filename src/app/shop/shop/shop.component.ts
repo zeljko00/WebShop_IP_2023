@@ -181,8 +181,8 @@ export class ShopComponent implements OnInit, AfterViewInit {
         .subscribe((data: any) => {
           this.spinner = false;
 
-          if (data.totalElements === 0)
-            this.message.create('info', 'Ne postoje takvi proizvodi!');
+          // if (data.totalElements === 0)
+          //   this.message.create('info', 'Ne postoje takvi proizvodi!');
           this.products = data.products;
           this.length = data.totalElements;
           this.paginator.length = this.length;
@@ -206,8 +206,8 @@ export class ShopComponent implements OnInit, AfterViewInit {
         .subscribe((data: any) => {
           this.spinner = false;
 
-          if (data.totalElements === 0)
-            this.message.create('info', 'Ne postoje takvi proizvodi!');
+          // if (data.totalElements === 0)
+          //   this.message.create('info', 'Ne postoje takvi proizvodi!');
           this.products = data.products;
           this.length = data.totalElements;
           this.paginator.length = this.length;
