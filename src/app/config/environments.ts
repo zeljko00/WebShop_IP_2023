@@ -1,5 +1,5 @@
 export const environment = {
-  baseURL: 'http://localhost:8080/WebShop',
+  baseURL: 'http://localhost:8081/WebShop',
   usersPath: '/users',
   avatarsPath: '/avatars',
   productsPath: '/products',
