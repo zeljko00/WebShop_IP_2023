@@ -52,7 +52,10 @@ export class ShopComponent implements OnInit, AfterViewInit {
     private service: ProductService,
     private router: Router
   ) {
-    if (router.getCurrentNavigation()!.extras.state) {
+    if (
+      router.getCurrentNavigation() &&
+      router.getCurrentNavigation()!.extras.state
+    ) {
       this.return = true;
     }
   }

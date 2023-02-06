@@ -14,13 +14,17 @@ export class HomepageComponent implements OnInit {
   saveTab() {
     sessionStorage.setItem('tab', this.tabIndex.toString());
   }
-  ngOnInit(): void {
-    if (sessionStorage.getItem('tab'))
-      this.tabIndex = Number(sessionStorage.getItem('tab'));
+  constructor() {
     if (
       sessionStorage.getItem('guest') &&
       sessionStorage.getItem('guest') === 'false'
     )
       this.guest = false;
+
+    console.log('homepage guest-' + this.guest);
+  }
+  ngOnInit(): void {
+    if (sessionStorage.getItem('tab'))
+      this.tabIndex = Number(sessionStorage.getItem('tab'));
   }
 }

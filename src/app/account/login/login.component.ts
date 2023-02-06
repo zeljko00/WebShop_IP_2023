@@ -84,9 +84,10 @@ export class LoginComponent implements OnInit {
       this.service
         .login(request)
         .pipe(
-          catchError((error: any) =>
-            this.handleError(error, 'Nevalidni kredencijali!')
-          )
+          catchError((error: any) => {
+            console.log(error);
+            return this.handleError(error, 'Nevalidni kredencijali!');
+          })
         )
         .subscribe((data: User) => {
           this.spinner = false;
