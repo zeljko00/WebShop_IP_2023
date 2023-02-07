@@ -25,19 +25,16 @@
     flex-direction: row;
     flex-wrap: wrap;
 }
-.gallery{
-  
-    margin: 50px;
-    margin-top: 35px;
- 
-}
+
 @media only screen and (min-width: 1201px){
     [nz-carousel-content] {
         height: 500px;
       }
     .gallery{
         max-width: 900px;
-        width: 900px; 
+        width: 900px;
+        margin: 3vw;
+        margin-top: 25px; 
     }
     .info{
         max-width: calc( 100vw - 1150px );
@@ -47,11 +44,15 @@
 }
 @media only screen and (max-width: 1201px){
     [nz-carousel-content] {
-        height: 500px;
+        max-width: 95vw;
+        height: 40vh;
       }
     .gallery{
-        max-width: calc( 100% - 100px );
-        width:calc( 100% - 100px );
+        max-width: calc( 100% - 50px );
+        width:calc( 100% - 50px );
+        margin: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
     .info{
         max-width: 90vw;
@@ -61,8 +62,8 @@
 
 .info{
     
-    padding: 50px;
-    margin-left: 4vw;
+    padding: 3vw;
+    margin-left: 3vw;
     min-width: 400px;
 }
 .flex-container{
@@ -99,11 +100,11 @@
 .description{
     padding: 50px;
     padding-top: 0px;
-    margin-left: 4vw;
+    margin-left: 3vw;
 }
 .home-btn{
-    margin-left: 4vw;
-    padding-left: 50px;
+    margin-left: 3vw;
+    padding-left: 3vw;
     margin-right: 80px;
 }
 .comments{

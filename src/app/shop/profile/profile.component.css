@@ -1,6 +1,4 @@
-.avatar{
-    height: 110px;
-}
+
 mat-toolbar{
     height: 140px;
     padding-left: 40px;
@@ -10,18 +8,36 @@ mat-toolbar{
     flex-direction: row;
     width: calc ( 100vw - 80px );
 }
-.container{
-  
+@media only screen and (max-width: 500px){
+    .buttons{
+        display: none;
+    }
+    .avatar-cont{
+        width: 150px;
+    }
+    .avatar{
+        height: 70px;
+    }
 }
-.avatar-cont{
-    width: 250px;
+@media only screen and (min-width: 500px){
+    .menu{
+        display: none;
+    }
+    .avatar-cont{
+        width: 250px;
+    }
+    .avatar{
+        height: 110px;
+    }
 }
 .info-cont{
     flex-grow: 1;
     text-align: center;
+    margin-left: 15px;
 }
-.controls-cont{
-    width: 250px;
+.control-cont{
+    /* width: 250px; */
+    margin-left: 15px;
 
 }
 .control-btn{
@@ -40,4 +56,7 @@ mat-toolbar{
     width: inherit;
     height: inherit;
     line-height: inherit;
+  }
+  .control-cont{
+    
   }

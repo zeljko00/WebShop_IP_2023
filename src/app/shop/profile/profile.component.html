@@ -14,34 +14,49 @@
     <div class="control-cont">
       <button
         mat-icon-button
-        class="example-icon"
-        aria-label="Example icon-button with menu icon"
-        class="control-btn"
-        matTooltip="Korisnička podrška"
-        (click)="contactSupport()"
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+        class="control-btn menu"
       >
-        <mat-icon class="control-icons">contact_support</mat-icon>
+        <mat-icon class="control-icons">menu</mat-icon>
       </button>
-      <button
-        mat-icon-button
-        class="example-icon"
-        aria-label="Example icon-button with menu icon"
-        class="control-btn"
-        matTooltip="Izmjena informacija"
-        (click)="changePersonalInfo()"
+      <mat-menu #menu="matMenu" class="menu">
+        <button mat-menu-item (click)="contactSupport()">
+          <mat-icon class="control-icons">contact_support</mat-icon>
+          <span>Korisnička podrška</span>
+        </button>
+        <button mat-menu-item (click)="changePersonalInfo()">
+          <mat-icon class="control-icons">build</mat-icon>
+          <span>Lični podaci</span>
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon class="control-icons">power_settings_new</mat-icon>
+          <span>Odjava sa naloga</span>
+        </button>
+      </mat-menu>
+      <span class="buttons">
+        <button mat-icon-button (click)="contactSupport()" class="control-btn">
+          <mat-icon class="control-icons">contact_support</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          aria-label="Example icon-button with menu icon"
+          class="control-btn"
+          matTooltip="Izmjena informacija"
+          (click)="changePersonalInfo()"
+        >
+          <mat-icon class="control-icons">build</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          aria-label="Example icon-button with menu icon"
+          class="control-btn"
+          matTooltip="Odjava"
+          (click)="logout()"
+        >
+          <mat-icon class="control-icons">power_settings_new</mat-icon>
+        </button></span
       >
-        <mat-icon class="control-icons">build</mat-icon>
-      </button>
-      <button
-        mat-icon-button
-        class="example-icon"
-        aria-label="Example icon-button with menu icon"
-        class="control-btn"
-        matTooltip="Odjava"
-        (click)="logout()"
-      >
-        <mat-icon class="control-icons">power_settings_new</mat-icon>
-      </button>
     </div>
   </mat-toolbar>
   <app-shop [myProducts]="flag"></app-shop>

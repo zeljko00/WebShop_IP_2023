@@ -1,5 +1,6 @@
 table {
     width: 100%;
+    max-width: 100%
   }
   .container{
     /* min-height: 65vh; */
@@ -7,4 +8,8 @@ table {
   }
   tr.mat-mdc-footer-row td {
     font-weight: bold;
+  }
+  .container{
+    max-width: 100%;
+    overflow: auto;
   }

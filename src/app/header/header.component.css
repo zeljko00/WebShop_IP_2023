@@ -1,22 +1,28 @@
 header{
     display: flex;
     flex-direction: row;
-    padding: 25px;
+    padding: 3vw;
     background-color:transparent;
+    padding-bottom: 0;
+    height: 12vmax;
 }
 #logo{
-    max-width: 23vmin;
-    max-height: 23vmin;
+    max-width: 100%;
+    max-height: 100%;
 }
 #title{
-    width: 80%;
+    width: 75%;
     font-size: 6vw;
     word-spacing: 2vw;
     font-family: 'Roboto', sans-serif;
     color: #3f51b5;
+    
 }
 #logo-cont{
-    width: 20%;
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .center-cont{
     display: flex;
